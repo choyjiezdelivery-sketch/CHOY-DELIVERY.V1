@@ -1,0 +1,39 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Customer delivery order tracked through the 8-step ChoyJiez workflow.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 64 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "storeName": { "type": "string", "maxLength": 100 },
+        "total": { "type": "number" },
+        "status": { "type": "string", "maxLength": 80 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "customerName", "storeName", "total", "status", "createdAt"]
+    },
+    "Wallet": {
+      "title": "Wallet",
+      "description": "User Choy Wallet balance and reward points.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "balance": { "type": "number" },
+        "rewardPoints": { "type": "number" }
+      },
+      "required": ["userId", "balance", "rewardPoints"]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": { "$ref": "#/entities/Order" },
+      "description": "Customer orders synced across Customer, Admin, Store, and Rider dashboards."
+    },
+    "/wallets/{userId}": {
+      "schema": { "$ref": "#/entities/Wallet" },
+      "description": "Per-user wallet balances and Jiez Spin reward points."
+    }
+  }
+}

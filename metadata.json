@@ -1,0 +1,6 @@
+{
+  "name": "ChoyJiez",
+  "description": "All What Your Want. Food delivery, stores, riders, and multi-role marketplace dashboard system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

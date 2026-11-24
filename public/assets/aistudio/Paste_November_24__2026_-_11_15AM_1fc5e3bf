@@ -1,0 +1,497 @@
+‎<!doctype html>
+‎<html lang="en">
+‎<head>
+‎  <meta charset="utf-8">
+‎  <meta name="viewport" content="width=device-width, initial-scale=1">
+‎  <meta name="theme-color" content="#104a25">
+‎  <title>ChoyJiez DELIVERY — All What You Want</title>
+‎  <link rel="preconnect" href="https://fonts.googleapis.com">
+‎  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+‎  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+‎  <link rel="stylesheet" href="styles.css">
+‎  <link rel="stylesheet" href="app.css">
+‎</head>
+‎<body>
+‎  <header class="topbar">
+‎    <button class="icon-button menu-toggle" id="menu-toggle" aria-label="Open admin menu">☰</button>
+‎    <a class="brand" href="#top" aria-label="ChoyJiez Delivery home">
+‎      <span class="brand-mark">🛵</span>
+‎      <span>
+‎        <b class="brand-name"><i>ChoyJiez</i> DELIVERY</b>
+‎        <em class="tagline">All What You Want</em>
+‎      </span>
+‎    </a>
+‎    <button class="icon-button" id="notifications" aria-label="Notifications">♧</button>
+‎  </header>
+‎
+‎  <nav class="role-switch" aria-label="Dashboard switcher">
+‎    <button class="role-button active" data-role="customer"><span>▣</span>Customer</button>
+‎    <button class="role-button" data-role="rider"><span>♧</span>Rider</button>
+‎    <button class="role-button" data-role="store"><span>▤</span>Store</button>
+‎    <button class="role-button" data-role="admin"><span>◇</span>Admin</button>
+‎  </nav>
+‎
+‎  <main class="page" id="top">
+‎    <section class="role-view active" id="customer-view">
+‎      <div class="promo-banner">
+‎        <div class="promo-slides">
+‎          <article class="promo-slide active">
+‎            <span class="eyebrow light">TODAY'S PROMO</span>
+‎            <h2>Good food, delivered with a smile.</h2>
+‎            <p>Discover local favorites and enjoy a little something extra.</p>
+‎          </article>
+‎          <article class="promo-slide">
+‎            <span class="eyebrow light">CHOY REWARDS</span>
+‎            <h2>Every order brings you closer.</h2>
+‎            <p>Collect tickets and try your luck in JIEZ SPIN.</p>
+‎          </article>
+‎          <article class="promo-slide">
+‎            <span class="eyebrow light">LOCAL PICKS</span>
+‎            <h2>All what you want, nearby.</h2>
+‎            <p>Food, groceries, market, pharmacy, and mall essentials.</p>
+‎          </article>
+‎        </div>
+‎        <div class="slide-dots"><i class="selected"></i><i></i><i></i></div>
+‎      </div>
+‎
+‎      <div class="customer-heading">
+‎        <div>
+‎          <span class="eyebrow">WHAT ARE YOU LOOKING FOR?</span>
+‎          <h1>Order from nearby</h1>
+‎        </div>
+‎        <span class="location-label">📍 Set delivery location</span>
+‎      </div>
+‎
+‎      <div class="categories" id="categories">
+‎        <button class="category active" data-category="food">🍔<span>Food</span></button>
+‎        <button class="category" data-category="grocery">🛒<span>Grocery</span></button>
+‎        <button class="category" data-category="market">🥬<span>Public Market</span></button>
+‎        <button class="category" data-category="pharmacy">💊<span>Pharmacy</span></button>
+‎        <button class="category" data-category="mall">🛍️<span>Mall</span></button>
+‎      </div>
+‎
+‎      <div class="customer-content">
+‎        <section id="stores-section">
+‎          <div class="section-title">
+‎            <div>
+‎              <span class="eyebrow">PICK A STORE</span>
+‎              <h2 id="store-section-title">Popular food stores</h2>
+‎            </div>
+‎            <button id="back-to-stores" class="link-button hidden">← All stores</button>
+‎          </div>
+‎          <div class="store-grid" id="store-list"></div>
+‎        </section>
+‎
+‎        <section id="products-section" class="hidden">
+‎          <div class="section-title">
+‎            <div>
+‎              <span class="eyebrow" id="store-category-label">FOOD MENU</span>
+‎              <h2 id="selected-store-name">Store menu</h2>
+‎            </div>
+‎            <button class="cart-button" id="open-checkout">🛒 Cart <b id="cart-count">0</b></button>
+‎          </div>
+‎          <div class="product-grid" id="product-list"></div>
+‎        </section>
+‎      </div>
+‎
+‎      <section class="customer-perks">
+‎        <div class="wallet-card">
+‎          <span>Choy Wallet</span>
+‎          <strong id="wallet-balance">₱420.00</strong>
+‎          <small>Demo balance · not real money</small>
+‎        </div>
+‎        <button class="perk" data-panel="vouchers">🎟️<span>Vouchers</span></button>
+‎        <button class="perk" data-panel="games">🎡<span>Games</span></button>
+‎        <button class="perk" data-panel="map">📍<span>Track order</span></button>
+‎      </section>
+‎
+‎      <section class="card order-tracker hidden" id="customer-order-tracker">
+‎        <div class="section-title">
+‎          <div>
+‎            <span class="eyebrow">YOUR ORDER</span>
+‎            <h2 id="customer-order-title">Order status</h2>
+‎          </div>
+‎          <span class="status-pill" id="customer-order-status">Awaiting review</span>
+‎        </div>
+‎        <div class="stepper" id="customer-stepper"></div>
+‎        <p id="customer-order-note" class="muted"></p>
+‎        <div class="map-placeholder hidden" id="live-map">
+‎          <span>🛵 Rider location</span>
+‎          <i>··············</i>
+‎          <span>📍 Delivery address</span>
+‎        </div>
+‎      </section>
+‎    </section>
+‎
+‎    <section class="role-view" id="rider-view">
+‎      <div class="view-heading">
+‎        <div>
+‎          <span class="eyebrow">RIDER PORTAL</span>
+‎          <h1>Rider workspace</h1>
+‎        </div>
+‎        <span class="status-pill" id="rider-duty-status">● Off duty</span>
+‎      </div>
+‎      <div class="notice">
+‎        <b>Duty requirements</b>
+‎        <span>Riders need admin approval, a valid schedule, and identity checks before going on duty. Verification is not performed by this demo.</span>
+‎      </div>
+‎
+‎      <div class="dashboard-grid">
+‎        <article class="card wide">
+‎          <div class="section-title">
+‎            <div><span class="eyebrow">ORDER QUEUE</span><h2>Assigned & available orders</h2></div>
+‎            <button class="sound-button" id="sound-test">🔔 Sound test</button>
+‎          </div>
+‎          <div id="rider-order-list"></div>
+‎        </article>
+‎
+‎        <article class="card">
+‎          <span class="eyebrow">MY EARNINGS</span>
+‎          <h2>₱0.00</h2>
+‎          <p class="muted">Demo earnings are not connected to a wallet or payout.</p>
+‎          <div class="rule-line">Delivery charge <b>₱20 / ₱30 / ₱45</b></div>
+‎          <div class="rule-line">Customer tip <b>Added to earnings</b></div>
+‎          <div class="rule-line">Bonus <b>5 / 10 / 20 deliveries</b></div>
+‎        </article>
+‎
+‎        <article class="card">
+‎          <span class="eyebrow">MY SCHEDULE</span>
+‎          <h2>Batch schedule</h2>
+‎          <div id="rider-schedule-list"></div>
+‎          <p class="muted">Only admin-published, non-overlapping shifts are shown.</p>
+‎        </article>
+‎
+‎        <article class="card wide">
+‎          <div class="section-title">
+‎            <div><span class="eyebrow">RIDER APPLICATION</span><h2>Apply / update profile</h2></div>
+‎            <span class="small-pill">Admin approval required</span>
+‎          </div>
+‎          <form id="rider-application" class="form-grid">
+‎            <label>Complete name<input required name="name" placeholder="Full name"></label>
+‎            <label>Nickname<input name="nickname" placeholder="Nickname"></label>
+‎            <label>Age<input required name="age" type="number" min="18" placeholder="Age"></label>
+‎            <label>Contact number<input required name="phone" type="tel" placeholder="09xx xxx xxxx"></label>
+‎            <label>Address, city & purok<input required name="address" placeholder="Complete address"></label>
+‎            <label>Gender / civil status<input name="details" placeholder="Optional"></label>
+‎            <label>Driver licence number<input required name="license" placeholder="Licence number"></label>
+‎            <label>Motorcycle type, plate & color<input required name="motorcycle" placeholder="Motorcycle details"></label>
+‎            <label>Profile photo<input type="file" accept="image/*"></label>
+‎            <label>Licence photo<input type="file" accept="image/*"></label>
+‎            <button class="button orange" type="submit">Send application</button>
+‎          </form>
+‎          <p class="muted fine-print">Do not upload real identity documents to this demo. Secure private storage is not configured.</p>
+‎        </article>
+‎
+‎        <article class="card wide">
+‎          <span class="eyebrow">DELIVERY STEPS</span>
+‎          <h2>Order milestones</h2>
+‎          <div class="stepper">
+‎            <span>Admin review</span>
+‎            <span>Store accepts</span>
+‎            <span>Rider accepts</span>
+‎            <span>Preparing</span>
+‎            <span>Pickup</span>
+‎            <span>On the way</span>
+‎            <span>Proof of delivery</span>
+‎          </div>
+‎        </article>
+‎      </div>
+‎    </section>
+‎
+‎    <section class="role-view" id="store-view">
+‎      <div class="view-heading">
+‎        <div>
+‎          <span class="eyebrow">SELLER PORTAL</span>
+‎          <h1>Store workspace</h1>
+‎        </div>
+‎        <button class="status-pill status-button" id="store-status">● Store online</button>
+‎      </div>
+‎
+‎      <div class="dashboard-grid">
+‎        <article class="card wide">
+‎          <div class="section-title">
+‎            <div><span class="eyebrow">ORDER QUEUE</span><h2>Orders to review and prepare</h2></div>
+‎          </div>
+‎          <div id="store-order-list"></div>
+‎        </article>
+‎
+‎        <article class="card wide">
+‎          <div class="section-title">
+‎            <div><span class="eyebrow">MENU BOARD</span><h2>Products & availability</h2></div>
+‎            <button class="button outline" data-toast="Product creation needs an authenticated store account.">＋ Add product</button>
+‎          </div>
+‎          <div class="table-wrap">
+‎            <table>
+‎              <thead>
+‎                <tr><th>Product</th><th>Price</th><th>Availability</th><th>Customer listing</th></tr>
+‎              </thead>
+‎              <tbody>
+‎                <tr><td>Chickenjoy</td><td>₱89</td><td><label class="toggle"><input type="checkbox" checked><span></span></label></td><td><span class="small-pill">Admin approval</span></td></tr>
+‎                <tr><td>Jolly Spaghetti</td><td>₱99</td><td><label class="toggle"><input type="checkbox" checked><span></span></label></td><td><span class="small-pill">Admin approval</span></td></tr>
+‎                <tr><td>Palabok</td><td>₱109</td><td><label class="toggle"><input type="checkbox"><span></span></label></td><td><span class="small-pill">Not listed</span></td></tr>
+‎              </tbody>
+‎            </table>
+‎          </div>
+‎        </article>
+‎
+‎        <article class="card"><span class="eyebrow">STORE INBOX</span><h2>Admin messages</h2><p>Menu price review · sample message</p><button class="button outline" data-toast="Messaging needs a shared backend.">Open inbox</button></article>
+‎        <article class="card"><span class="eyebrow">STORE RECORDS</span><h2>Today</h2><p>Order and sales records will appear here when the database is connected.</p></article>
+‎      </div>
+‎    </section>
+‎
+‎    <section class="role-view" id="admin-view">
+‎      <div class="admin-welcome">
+‎        <div class="avatar">C</div>
+‎        <div>
+‎          <span class="eyebrow light">ADMIN CONTROL CENTER</span>
+‎          <h1>Choy Admin</h1>
+‎          <p>Operations & management</p>
+‎        </div>
+‎        <span class="secure-label">Production requires secure sign-in</span>
+‎      </div>
+‎
+‎      <div class="admin-layout">
+‎        <aside class="admin-sidebar" id="admin-sidebar">
+‎          <h2>Management</h2>
+‎          <div class="admin-menu">
+‎            <button class="admin-link active" data-admin-section="overview">▦ <span>Overview</span></button>
+‎            <button class="admin-link" data-admin-section="orders">▤ <span>Customer orders</span><b id="pending-order-count">0</b></button>
+‎            <button class="admin-link" data-admin-section="verification">♙ <span>User verification</span></button>
+‎            <button class="admin-link" data-admin-section="registrations">☑ <span>Customer registrations</span></button>
+‎            <button class="admin-link" data-admin-section="riders">♧ <span>Riders & performance</span></button>
+‎            <button class="admin-link" data-admin-section="stores">▣ <span>Store accounts</span></button>
+‎            <button class="admin-link" data-admin-section="schedules">◷ <span>Riders & schedules</span></button>
+‎            <button class="admin-link" data-admin-section="remittances">＄ <span>Rider remittances</span></button>
+‎            <button class="admin-link" data-admin-section="markup">◇ <span>Menu board markup</span></button>
+‎            <button class="admin-link" data-admin-section="logs">▱ <span>Inbox & logs</span></button>
+‎            <button class="admin-link" data-admin-section="slides">▧ <span>Images & promos</span></button>
+‎            <button class="admin-link" data-admin-section="settings">⚙ <span>Settings & permits</span></button>
+‎          </div>
+‎        </aside>
+‎
+‎        <div class="admin-main">
+‎          <section class="admin-section active" id="admin-overview">
+‎            <div class="section-title">
+‎              <div><span class="eyebrow">LIVE OVERVIEW</span><h2>Operations at a glance</h2></div>
+‎              <span class="small-pill">Demo analytics</span>
+‎            </div>
+‎            <div class="stats-grid">
+‎              <article class="stat-card"><span>Orders in this demo</span><b id="analytics-orders">0</b><small>Local browser only</small></article>
+‎              <article class="stat-card"><span>Pending review</span><b id="analytics-pending">0</b><small>Needs admin action</small></article>
+‎              <article class="stat-card"><span>Active riders</span><b>—</b><small>Connect a backend</small></article>
+‎              <article class="stat-card"><span>Sales</span><b id="analytics-sales">₱0</b><small>Demo orders only</small></article>
+‎            </div>
+‎
+‎            <div class="admin-lower">
+‎              <article class="card">
+‎                <div class="section-title">
+‎                  <div><span class="eyebrow">ORDER PIPELINE</span><h3>Needs attention</h3></div>
+‎                  <button class="link-button" data-jump="orders">Review orders →</button>
+‎                </div>
+‎                <p>Customer order → Admin review → Store accepts → Rider accepts → Store prepares → Rider pickup → On the way → Proof of delivery.</p>
+‎              </article>
+‎
+‎              <article class="card">
+‎                <span class="eyebrow">DELIVERY MILESTONES</span>
+‎                <h3>Service targets</h3>
+‎                <div class="rule-line">Store preparation <b>30 min</b></div>
+‎                <div class="rule-line">Rider delivery <b>15 min</b></div>
+‎                <div class="rule-line">Rider offer window <b>60 sec</b></div>
+‎              </article>
+‎            </div>
+‎
+‎            <article class="card storage-card">
+‎              <div>
+‎                <span class="eyebrow">STORAGE</span>
+‎                <h3>5 GB is a storage-provider setting</h3>
+‎                <p>This static website does not include file storage. Choose a provider and plan that supports your required quota; configure private access for rider IDs and delivery proof.</p>
+‎              </div>
+‎              <div class="storage-meter">
+‎                <strong>Not connected</strong>
+‎                <span>We cannot claim or display a real quota until storage is configured.</span>
+‎              </div>
+‎            </article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-orders">
+‎            <div class="section-title">
+‎              <div><span class="eyebrow">ORDER APPROVAL</span><h2>Customer orders</h2></div>
+‎              <input class="search" id="admin-order-search" placeholder="Search orders">
+‎            </div>
+‎            <div id="admin-order-list" class="card table-wrap"></div>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-verification">
+‎            <div class="section-title"><div><span class="eyebrow">APPLICATIONS</span><h2>Rider verification</h2></div></div>
+‎            <article class="card">
+‎              <h3>Secure application review</h3>
+‎              <p>Applications need private document storage, authenticated admin access, and an approval log. This demo does not collect or verify real IDs.</p>
+‎            </article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-registrations">
+‎            <div class="section-title"><div><span class="eyebrow">CUSTOMER ACCESS</span><h2>Customer registrations</h2></div></div>
+‎            <article class="card"><p>Customer account management becomes available after connecting secure sign-in and a database.</p></article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-riders">
+‎            <div class="section-title"><div><span class="eyebrow">RIDER PERFORMANCE</span><h2>Riders, scores & rewards</h2></div></div>
+‎            <article class="card">
+‎              <p>Batch A: 90–100 · Batch B: 80–89 · Batch C: below 80. Admin controls score changes and rider bonuses.</p>
+‎              <div class="rule-line">Absent <b>−5 points</b></div>
+‎              <div class="rule-line">Late <b>−1 point</b></div>
+‎              <div class="rule-line">Order cancellation <b>−1 point</b></div>
+‎              <div class="rule-line">Report <b>Admin review required</b></div>
+‎              <div class="rule-line">Delivery bonuses <b>₱50 / 5 · ₱100 / 10 · ₱200 / 20</b></div>
+‎            </article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-stores">
+‎            <div class="section-title"><div><span class="eyebrow">SELLER MANAGEMENT</span><h2>Store accounts & concerns</h2></div></div>
+‎            <article class="card"><p>Approve store applications, requirements, menus, and customer-facing listings after secure account setup.</p></article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-schedules">
+‎            <div class="section-title"><div><span class="eyebrow">SHIFT MANAGEMENT</span><h2>Schedule by rider batch</h2></div></div>
+‎            <article class="card">
+‎              <form id="schedule-form" class="schedule-form">
+‎                <label>Batch<select id="schedule-batch"><option>Batch A</option><option>Batch B</option><option>Batch C</option></select></label>
+‎                <label>Start<input id="schedule-start" type="time" required value="08:00"></label>
+‎                <label>End<input id="schedule-end" type="time" required value="12:00"></label>
+‎                <button class="button orange">Publish shift</button>
+‎              </form>
+‎              <div id="admin-schedule-list"></div>
+‎              <p class="muted">Shift choices are published to the matching rider batch. Overlapping shifts will be rejected in this demo.</p>
+‎            </article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-remittances">
+‎            <div class="section-title"><div><span class="eyebrow">PAYOUT CONTROL</span><h2>Rider remittances</h2></div></div>
+‎            <article class="card"><p>Wallet balances, COD remittance, and earnings claims require a secure, auditable backend before money can be handled.</p></article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-markup">
+‎            <div class="section-title"><div><span class="eyebrow">MENU APPROVAL</span><h2>Menu board & price markup</h2></div></div>
+‎            <article class="card table-wrap">
+‎              <table>
+‎                <thead>
+‎                  <tr><th>Store</th><th>Product</th><th>Store price</th><th>Customer price</th><th>Review</th></tr>
+‎                </thead>
+‎                <tbody>
+‎                  <tr><td>Jollibee</td><td>Chickenjoy</td><td>₱80</td><td><input class="price-input" value="89" aria-label="Customer price"></td><td><button class="button orange" data-toast="Price review is a demo control.">Publish</button></td></tr>
+‎                  <tr><td>Greenwich</td><td>Pizza Combo</td><td>₱220</td><td><input class="price-input" value="249" aria-label="Customer price"></td><td><button class="button orange" data-toast="Price review is a demo control.">Publish</button></td></tr>
+‎                </tbody>
+‎              </table>
+‎            </article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-logs">
+‎            <div class="section-title"><div><span class="eyebrow">COMMUNICATION & RECORDS</span><h2>Inbox, concerns & logs</h2></div></div>
+‎            <article class="card"><p>Rider, customer, and store messages and order logs need a shared database to be visible to all accounts.</p></article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-slides">
+‎            <div class="section-title"><div><span class="eyebrow">CUSTOMER HOMEPAGE</span><h2>Images & promotions</h2></div></div>
+‎            <article class="card">
+‎              <label class="button outline upload-label">Choose banner image<input type="file" accept="image/*"></label>
+‎              <p class="muted">Upload is disabled until private image storage is configured.</p>
+‎            </article>
+‎          </section>
+‎
+‎          <section class="admin-section" id="admin-settings">
+‎            <div class="section-title"><div><span class="eyebrow">APP CONFIGURATION</span><h2>Delivery fees & settings</h2></div></div>
+‎            <article class="card">
+‎              <div class="rule-line">0–2 km <b>Customer ₱25 · Rider ₱20</b></div>
+‎              <div class="rule-line">Over 2–5 km <b>Customer ₱35 · Rider ₱30</b></div>
+‎              <div class="rule-line">Over 5–10 km <b>Customer ₱50 · Rider ₱45</b></div>
+‎              <p>Map routing, GCash, permits, insurance, notifications, and storage must be connected and tested before real deliveries.</p>
+‎            </article>
+‎          </section>
+‎        </div>
+‎      </div>
+‎    </section>
+‎  </main>
+‎
+‎  <button class="ask-choy" id="ask-choy"><span>🛵</span><b>Ask Choy</b></button>
+‎
+‎  <section class="chat-box hidden" id="chat-box">
+‎    <header><b>🛵 Ask Choy</b><button class="close-chat" aria-label="Close chat">×</button></header>
+‎    <div class="chat-messages" id="chat-messages"><p class="bot-message">Hi! I can help with orders, stores, and delivery.</p></div>
+‎    <form id="chat-form">
+‎      <input id="chat-input" placeholder="Write a message…" autocomplete="off">
+‎      <button>Send</button>
+‎    </form>
+‎  </section>
+‎
+‎  <div class="backdrop hidden" id="backdrop"></div>
+‎
+‎  <section class="checkout-modal hidden" id="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+‎    <header>
+‎      <div>
+‎        <span class="eyebrow">DELIVERY DETAILS</span>
+‎        <h2 id="checkout-title">Checkout</h2>
+‎      </div>
+‎      <button class="close-checkout" aria-label="Close checkout">×</button>
+‎    </header>
+‎    <form id="checkout-form">
+‎      <label>Delivery distance<select id="distance-select"><option value="1">0–2 km · ₱25 delivery</option><option value="3">Over 2–5 km · ₱35 delivery</option><option value="7">Over 5–10 km · ₱50 delivery</option></select></label>
+‎      <label>Pin location<button type="button" class="location-button" data-toast="A real map pin requires a maps provider.">📍 Choose location on map</button></label>
+‎      <label>Delivery address<textarea name="address" required placeholder="House number, street, purok, barangay"></textarea></label>
+‎      <label>Help your rider<input name="instructions" placeholder="Landmark or delivery instructions"></label>
+‎      <label>Contact number<input name="phone" required type="tel" pattern="[0-9+() -]{7,20}" placeholder="09xx xxx xxxx"></label>
+‎      <div>
+‎        <span class="field-title">Tip for rider</span>
+‎        <div class="tip-options">
+‎          <button type="button" data-tip="0" class="selected">No tip</button>
+‎          <button type="button" data-tip="5">₱5</button>
+‎          <button type="button" data-tip="10">₱10</button>
+‎          <button type="button" data-tip="20">₱20</button>
+‎          <button type="button" data-tip="50">₱50</button>
+‎          <button type="button" data-tip="100">₱100</button>
+‎        </div>
+‎      </div>
+‎      <fieldset>
+‎        <legend>Payment method</legend>
+‎        <label class="radio-row"><input type="radio" name="payment" value="cod" checked> Cash on delivery</label>
+‎        <label class="radio-row"><input type="radio" name="payment" value="gcash"> GCash / online payment (not connected)</label>
+‎      </fieldset>
+‎      <div class="checkout-total">
+‎        <span>Items <b id="checkout-subtotal">₱0.00</b></span>
+‎        <span>Delivery <b id="delivery-charge">₱25.00</b></span>
+‎        <span>Tip <b id="tip-total">₱0.00</b></span>
+‎        <strong>Total <b id="checkout-grand-total">₱25.00</b></strong>
+‎      </div>
+‎      <button class="button orange place-order" type="submit">Place demo order</button>
+‎      <p class="muted fine-print">Prototype only: no order is submitted and no payment is collected.</p>
+‎    </form>
+‎  </section>
+‎
+‎  <section class="side-panel hidden" id="vouchers-panel">
+‎    <header><h2>Vouchers & promos</h2><button class="close-panel">×</button></header>
+‎    <article class="voucher"><b>10% OFF</b><span>Minimum spend ₱499 · Demo voucher</span></article>
+‎    <article class="voucher"><b>Free delivery</b><span>One-time reward · Demo voucher</span></article>
+‎  </section>
+‎
+‎  <section class="side-panel hidden" id="games-panel">
+‎    <header><h2>JIEZ SPIN</h2><button class="close-panel">×</button></header>
+‎    <div class="game-content">
+‎      <div class="wheel">CHOY</div>
+‎      <p id="spin-status">3 demo tickets · one spin per ticket</p>
+‎      <button class="button orange" id="spin-button">Spin now</button>
+‎      <p class="muted fine-print">Demo game only; rewards are not redeemable.</p>
+‎    </div>
+‎  </section>
+‎
+‎  <section class="side-panel hidden" id="map-panel">
+‎    <header><h2>Order tracking</h2><button class="close-panel">×</button></header>
+‎    <div class="map-placeholder"><span>🛵 Rider</span><i>··············</i><span>📍 You</span></div>
+‎    <p class="muted">Illustration only. Live maps and rider location are not connected.</p>
+‎  </section>
+‎
+‎  <div class="toast hidden" id="toast" role="status"></div>
+‎  <script src="script.js"></script>
+‎</body>
+‎</html>
+‎
+‎
+‎
