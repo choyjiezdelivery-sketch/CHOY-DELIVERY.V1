@@ -55,16 +55,6 @@ async function startServer() {
     });
   });
 
-  // Initialize Gemini AI client for server-side
-  const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY || "",
-    httpOptions: {
-      headers: {
-        "User-Agent": "aistudio-build",
-      },
-    },
-  });
-
   // API endpoint for Ask Choy AI assistant
   app.post("/api/gemini/chat", async (req, res) => {
     try {
@@ -73,11 +63,21 @@ async function startServer() {
         return res.status(400).json({ error: "Message is required" });
       }
 
-      if (!process.env.GEMINI_API_KEY || process.env.GEMINI_API_KEY === "MY_GEMINI_API_KEY") {
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (!apiKey || apiKey === "MY_GEMINI_API_KEY") {
         return res.status(503).json({
           error: "GEMINI_API_KEY is not configured in environment variables.",
         });
       }
+
+      const ai = new GoogleGenAI({
+        apiKey,
+        httpOptions: {
+          headers: {
+            "User-Agent": "aistudio-build",
+          },
+        },
+      });
 
       const systemInstruction = `You are "Choy AI", the friendly, helpful AI assistant for ${APP_CONFIG.appName} in ${APP_CONFIG.region}. You help customers discover delicious food, groceries, pharmacy, and mall items, explain vouchers, guide riders within the ${APP_CONFIG.deliveryRadiusKm}km delivery zone, and answer store questions warmly in English and Cebuano/Bisaya.`;
 

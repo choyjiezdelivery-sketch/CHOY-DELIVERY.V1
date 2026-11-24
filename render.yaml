@@ -1,18 +1,14 @@
 services:
   - type: web
     name: choyjiez-delivery
-    runtime: node
+    runtime: docker
     plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    dockerfilePath: ./Dockerfile
     healthCheckPath: /api/health
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: "10000"
-      - key: GEMINI_API_KEY
-        sync: false
+      # Optional: Add GEMINI_API_KEY in Render Dashboard -> Environment to enable Ask Choy AI
       - key: APP_NAME
         value: ChoyJiez DELIVERY
       - key: APP_TAGLINE
